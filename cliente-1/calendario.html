@@ -30,6 +30,7 @@
             padding: 20px;
         }
 
+        /* LOGIN */
         .login-screen {
             display: flex;
             align-items: center;
@@ -85,6 +86,7 @@
             justify-content: center;
         }
 
+        /* MAIN */
         .main-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -94,7 +96,8 @@
             display: none !important;
         }
 
-        .calendar-view {
+        .desktop-version,
+        .mobile-version {
             background: var(--white);
             border-radius: 8px;
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
@@ -126,6 +129,42 @@
             opacity: 0.85;
             color: var(--accent-gold);
             font-weight: 600;
+        }
+
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            padding: 20px;
+            background: var(--light-bg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .summary-card {
+            background: var(--white);
+            padding: 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-gold);
+        }
+
+        .summary-card h3 {
+            font-size: 11px;
+            color: var(--secondary);
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .summary-card .amount {
+            font-size: 20px;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .summary-card .detail {
+            font-size: 11px;
+            color: var(--secondary);
+            margin-top: 4px;
         }
 
         .controls {
@@ -224,45 +263,11 @@
             border-left: 4px solid #9966CC;
         }
 
-        tr.tipo-corriente {
-            border-left: 4px solid var(--accent-green);
-        }
-
         input[type="checkbox"] {
             cursor: pointer;
             width: 18px;
             height: 18px;
             accent-color: var(--accent-green);
-        }
-
-        .summary {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            padding: 20px;
-            background: var(--light-bg);
-            border-top: 1px solid var(--border-color);
-        }
-
-        .summary-card {
-            background: var(--white);
-            padding: 16px;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-gold);
-        }
-
-        .summary-card h3 {
-            font-size: 11px;
-            color: var(--secondary);
-            font-weight: 700;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-        }
-
-        .summary-card .amount {
-            font-size: 20px;
-            color: var(--primary-dark);
-            font-weight: 700;
         }
 
         .footer {
@@ -280,7 +285,78 @@
             margin-bottom: 4px;
         }
 
+        .footer .subtitle-footer {
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+        }
+
+        /* MÓVIL */
+        .cards-container {
+            padding: 16px;
+        }
+
+        .payment-card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--accent-gold);
+            transition: all 0.2s ease;
+        }
+
+        .payment-card.tipo-monotributo {
+            border-left-color: #9966CC;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .card-info {
+            flex: 1;
+        }
+
+        .card-concepto {
+            font-size: 12px;
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .card-monto {
+            font-size: 16px;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .card-vencimiento {
+            font-size: 12px;
+            color: var(--primary-dark);
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .card-checkbox {
+            display: flex;
+            align-items: center;
+        }
+
+        .card-checkbox input {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* RESPONSIVE */
         @media (max-width: 768px) {
+            .desktop-version {
+                display: none !important;
+            }
+
             .controls {
                 flex-direction: column;
             }
@@ -294,6 +370,20 @@
 
             .logout-btn {
                 margin-left: 0;
+            }
+
+            .header h1 {
+                font-size: 18px;
+            }
+
+            .summary {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-version {
+                display: none !important;
             }
         }
     </style>
@@ -315,9 +405,11 @@
     </div>
 </div>
 
-<!-- MAIN CALENDAR -->
+<!-- MAIN CONTAINER -->
 <div class="main-container hidden" id="mainContainer">
-    <div class="calendar-view">
+
+    <!-- VERSIÓN ESCRITORIO -->
+    <div class="desktop-version">
         <div class="header">
             <h1>📅 Calendario de Pagos</h1>
             <p><strong>Candela Larragneguy - Contadora Pública</strong></p>
@@ -325,17 +417,34 @@
             <div class="subtitle">Cliente: Juan Manuel González</div>
         </div>
 
+        <div class="summary" id="summaryDesktop"></div>
+
         <div class="controls">
             <label>Filtrar por mes:</label>
-            <select id="mesFilter" onchange="filterPayments()">
+            <select id="mesFilterDesktop" onchange="filterPaymentsDesktop()">
                 <option value="">Mostrar todos</option>
                 <option value="2026-10">Octubre 2026</option>
                 <option value="2026-11">Noviembre 2026</option>
                 <option value="2026-12">Diciembre 2026</option>
                 <option value="2027-01">Enero 2027</option>
                 <option value="2027-02">Febrero 2027</option>
+                <option value="2027-03">Marzo 2027</option>
+                <option value="2027-04">Abril 2027</option>
+                <option value="2027-05">Mayo 2027</option>
+                <option value="2027-06">Junio 2027</option>
+                <option value="2027-07">Julio 2027</option>
+                <option value="2027-08">Agosto 2027</option>
+                <option value="2027-09">Septiembre 2027</option>
+                <option value="2027-10">Octubre 2027</option>
+                <option value="2027-11">Noviembre 2027</option>
+                <option value="2027-12">Diciembre 2027</option>
+                <option value="2028-01">Enero 2028</option>
+                <option value="2028-02">Febrero 2028</option>
+                <option value="2028-03">Marzo 2028</option>
+                <option value="2028-04">Abril 2028</option>
+                <option value="2028-05">Mayo 2028</option>
             </select>
-            <button onclick="resetPayments()">↺ Limpiar marcas</button>
+            <button onclick="resetPaymentsDesktop()">↺ Limpiar marcas</button>
             <button onclick="window.print()">🖨️ Imprimir</button>
             <a href="https://api.whatsapp.com/send?phone=542235216138" target="_blank" class="whatsapp-btn">💬 Consultar</a>
             <button class="logout-btn" onclick="logout()">Cerrar sesión</button>
@@ -357,39 +466,105 @@
             </table>
         </div>
 
-        <div class="summary" id="summary"></div>
-
         <div class="footer">
             <div class="firma">Candela Larragneguy - Contadora Pública</div>
-            <div style="font-weight: 600; color: var(--accent-gold); margin-bottom: 8px;">Consultoría y Gestión Empresarial</div>
+            <div class="subtitle-footer">Consultoría y Gestión Empresarial</div>
             <p>Documento generado para organización de finanzas personales • Septiembre 2026</p>
         </div>
     </div>
+
+    <!-- VERSIÓN MÓVIL -->
+    <div class="mobile-version">
+        <div class="header">
+            <h1>Calendario de Pagos</h1>
+            <p><strong>Candela Larragneguy - Contadora Pública</strong></p>
+            <p>Consultoría y Gestión Empresarial</p>
+            <div class="subtitle">Cliente: Juan Manuel González</div>
+        </div>
+
+        <div class="summary" id="summaryMobile"></div>
+
+        <div class="controls">
+            <label>Filtrar por mes:</label>
+            <select id="mesFilterMobile" onchange="filterPaymentsMobile()">
+                <option value="">Todos los meses</option>
+                <option value="2026-10">Octubre 2026</option>
+                <option value="2026-11">Noviembre 2026</option>
+                <option value="2026-12">Diciembre 2026</option>
+                <option value="2027-01">Enero 2027</option>
+                <option value="2027-02">Febrero 2027</option>
+                <option value="2027-03">Marzo 2027</option>
+                <option value="2027-04">Abril 2027</option>
+                <option value="2027-05">Mayo 2027</option>
+                <option value="2027-06">Junio 2027</option>
+                <option value="2027-07">Julio 2027</option>
+                <option value="2027-08">Agosto 2027</option>
+                <option value="2027-09">Septiembre 2027</option>
+                <option value="2027-10">Octubre 2027</option>
+                <option value="2027-11">Noviembre 2027</option>
+                <option value="2027-12">Diciembre 2027</option>
+                <option value="2028-01">Enero 2028</option>
+                <option value="2028-02">Febrero 2028</option>
+                <option value="2028-03">Marzo 2028</option>
+                <option value="2028-04">Abril 2028</option>
+                <option value="2028-05">Mayo 2028</option>
+            </select>
+            <button onclick="resetPaymentsMobile()">↺ Limpiar</button>
+            <button onclick="window.print()">🖨️ Imprimir</button>
+            <a href="https://api.whatsapp.com/send?phone=542235216138" target="_blank" class="whatsapp-btn">💬 Consultar</a>
+            <button class="logout-btn" onclick="logout()">Cerrar sesión</button>
+        </div>
+
+        <div class="cards-container" id="cardsContainer">
+        </div>
+
+        <div class="footer">
+            <div class="firma">Candela Larragneguy - Contadora Pública</div>
+            <div class="subtitle-footer">Consultoría y Gestión Empresarial</div>
+            <p>Organización de finanzas personales • Septiembre 2026</p>
+        </div>
+    </div>
+
 </div>
 
 <script>
     const CLIENT_ID = '245604969675-k53tl31tugp76q72vj3k3ckio8qcn9ej.apps.googleusercontent.com';
 
     let payments = [
+        // OCTUBRE 2026
         { id: '1', mes: 'Octubre', año: 2026, mes_num: '2026-10', concepto: 'Plan ARCA', tipo: 'arca', monto: 71695.65, vencimiento: 16, pagado: false },
         { id: '2', mes: 'Octubre', año: 2026, mes_num: '2026-10', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.57, vencimiento: 16, pagado: false },
-        { id: '3', mes: 'Octubre', año: 2026, mes_num: '2026-10', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
-        { id: '4', mes: 'Noviembre', año: 2026, mes_num: '2026-11', concepto: 'Plan ARCA', tipo: 'arca', monto: 71695.65, vencimiento: 16, pagado: false },
-        { id: '5', mes: 'Noviembre', año: 2026, mes_num: '2026-11', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
-        { id: '6', mes: 'Noviembre', año: 2026, mes_num: '2026-11', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
-        { id: '7', mes: 'Diciembre', año: 2026, mes_num: '2026-12', concepto: 'Plan ARCA', tipo: 'arca', monto: 71695.65, vencimiento: 16, pagado: false },
-        { id: '8', mes: 'Diciembre', año: 2026, mes_num: '2026-12', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
-        { id: '9', mes: 'Diciembre', año: 2026, mes_num: '2026-12', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
+        // NOVIEMBRE 2026
+        { id: '3', mes: 'Noviembre', año: 2026, mes_num: '2026-11', concepto: 'Plan ARCA', tipo: 'arca', monto: 71695.65, vencimiento: 16, pagado: false },
+        { id: '4', mes: 'Noviembre', año: 2026, mes_num: '2026-11', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        // DICIEMBRE 2026
+        { id: '5', mes: 'Diciembre', año: 2026, mes_num: '2026-12', concepto: 'Plan ARCA', tipo: 'arca', monto: 71695.65, vencimiento: 16, pagado: false },
+        { id: '6', mes: 'Diciembre', año: 2026, mes_num: '2026-12', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        // ENERO 2027
+        { id: '7', mes: 'Enero', año: 2027, mes_num: '2027-01', concepto: 'Plan ARCA', tipo: 'arca', monto: 71695.65, vencimiento: 16, pagado: false },
+        { id: '8', mes: 'Enero', año: 2027, mes_num: '2027-01', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        // FEBRERO 2027 - MAYO 2028 (Solo Plan Monotributo)
+        { id: '9', mes: 'Febrero', año: 2027, mes_num: '2027-02', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '10', mes: 'Marzo', año: 2027, mes_num: '2027-03', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '11', mes: 'Abril', año: 2027, mes_num: '2027-04', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '12', mes: 'Mayo', año: 2027, mes_num: '2027-05', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '13', mes: 'Junio', año: 2027, mes_num: '2027-06', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '14', mes: 'Julio', año: 2027, mes_num: '2027-07', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '15', mes: 'Agosto', año: 2027, mes_num: '2027-08', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '16', mes: 'Septiembre', año: 2027, mes_num: '2027-09', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '17', mes: 'Octubre', año: 2027, mes_num: '2027-10', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '18', mes: 'Noviembre', año: 2027, mes_num: '2027-11', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '19', mes: 'Diciembre', año: 2027, mes_num: '2027-12', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '20', mes: 'Enero', año: 2028, mes_num: '2028-01', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '21', mes: 'Febrero', año: 2028, mes_num: '2028-02', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '22', mes: 'Marzo', año: 2028, mes_num: '2028-03', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '23', mes: 'Abril', año: 2028, mes_num: '2028-04', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '24', mes: 'Mayo', año: 2028, mes_num: '2028-05', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
     ];
 
-    // MANEJO DE AUTENTICACIÓN
     function handleCredentialResponse(response) {
         console.log('Autenticación exitosa');
-        
-        // Guardar que el usuario está autenticado
         localStorage.setItem('authenticated', 'true');
-        
-        // Mostrar calendario
         showCalendar();
     }
 
@@ -400,7 +575,6 @@
     }
 
     function loadPayments() {
-        // Cargar pagos guardados desde localStorage
         payments.forEach(p => {
             const saved = localStorage.getItem(`payment_${p.id}`);
             if (saved) {
@@ -408,11 +582,11 @@
                 p.pagado = data.pagado;
             }
         });
-        renderTable();
-        renderSummary();
+        renderDesktop();
+        renderMobile();
     }
 
-    function renderTable() {
+    function renderDesktop() {
         const tbody = document.getElementById('tableBody');
         tbody.innerHTML = '';
         
@@ -445,29 +619,74 @@
             
             tbody.appendChild(row);
         });
+        
+        renderSummary();
+    }
+
+    function renderMobile() {
+        const container = document.getElementById('cardsContainer');
+        container.innerHTML = '';
+        
+        let currentMonth = '';
+        
+        payments.forEach(payment => {
+            if (currentMonth !== payment.mes_num) {
+                const monthHeader = document.createElement('div');
+                monthHeader.style.cssText = 'padding: 12px 0; font-weight: bold; color: var(--primary-dark); margin-top: 12px; border-bottom: 2px solid var(--border-color);';
+                monthHeader.innerHTML = `${payment.mes} ${payment.año}`;
+                container.appendChild(monthHeader);
+                currentMonth = payment.mes_num;
+            }
+            
+            const card = document.createElement('div');
+            card.className = `payment-card tipo-${payment.tipo}`;
+            
+            const fechaVencimiento = new Date(payment.año, parseInt(payment.mes_num.split('-')[1]) - 1, payment.vencimiento);
+            const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+            const fechaFormato = `${diasSemana[fechaVencimiento.getDay()]} ${payment.vencimiento}`;
+            
+            card.innerHTML = `
+                <div class="card-header">
+                    <div class="card-info">
+                        <div class="card-concepto">${payment.concepto}</div>
+                        <div class="card-monto">$${parseFloat(payment.monto).toLocaleString('es-AR', {minimumFractionDigits: 2})}</div>
+                    </div>
+                    <div class="card-checkbox">
+                        <input type="checkbox" data-id="${payment.id}" ${payment.pagado ? 'checked' : ''} onchange="togglePayment('${payment.id}')">
+                    </div>
+                </div>
+                <div class="card-vencimiento">Vence: ${fechaFormato}</div>
+            `;
+            
+            container.appendChild(card);
+        });
+        
+        renderSummary();
     }
 
     function renderSummary() {
-        const totalPlanes = payments.filter(p => p.tipo !== 'corriente' && !p.pagado).reduce((sum, p) => sum + p.monto, 0);
-        const totalCorriente = payments.filter(p => p.tipo === 'corriente').reduce((sum, p) => sum + p.monto, 0);
-        const pagados = payments.filter(p => p.pagado).length;
+        const planesARCA = payments.filter(p => p.tipo === 'arca' && !p.pagado).reduce((sum, p) => sum + p.monto, 0);
+        const planesMonotributo = payments.filter(p => p.tipo === 'monotributo' && !p.pagado).reduce((sum, p) => sum + p.monto, 0);
+        const totalPlanes = planesARCA + planesMonotributo;
+        
+        const pagosPlan = payments.filter(p => p.tipo !== 'corriente' && p.pagado).length;
+        const totalPlan = payments.filter(p => p.tipo !== 'corriente').length;
         
         const html = `
             <div class="summary-card">
                 <h3>💰 Planes de Pago</h3>
                 <div class="amount">$${totalPlanes.toLocaleString('es-AR', {minimumFractionDigits: 2})}</div>
-            </div>
-            <div class="summary-card" style="border-left-color: var(--accent-green);">
-                <h3>📅 Monotributo Mensual</h3>
-                <div class="amount">$${totalCorriente.toLocaleString('es-AR', {minimumFractionDigits: 2})}</div>
+                <div class="detail">Pendiente</div>
             </div>
             <div class="summary-card">
                 <h3>📊 Pagados</h3>
-                <div class="amount">${pagados}/${payments.length}</div>
+                <div class="amount">${pagosPlan}/${totalPlan}</div>
+                <div class="detail">De planes</div>
             </div>
         `;
         
-        document.getElementById('summary').innerHTML = html;
+        document.getElementById('summaryDesktop').innerHTML = html;
+        document.getElementById('summaryMobile').innerHTML = html;
     }
 
     function togglePayment(id) {
@@ -475,13 +694,13 @@
         if (payment) {
             payment.pagado = !payment.pagado;
             localStorage.setItem(`payment_${id}`, JSON.stringify(payment));
-            renderTable();
-            renderSummary();
+            renderDesktop();
+            renderMobile();
         }
     }
 
-    function filterPayments() {
-        const filter = document.getElementById('mesFilter').value;
+    function filterPaymentsDesktop() {
+        const filter = document.getElementById('mesFilterDesktop').value;
         const rows = document.querySelectorAll('#tableBody tr');
         
         rows.forEach(row => {
@@ -493,14 +712,31 @@
         });
     }
 
+    function filterPaymentsMobile() {
+        const filter = document.getElementById('mesFilterMobile').value;
+        const cards = document.querySelectorAll('.payment-card');
+        
+        cards.forEach(card => {
+            card.style.display = !filter || card.textContent.includes(filter) ? '' : 'none';
+        });
+    }
+
+    function resetPaymentsDesktop() {
+        resetPayments();
+        renderDesktop();
+    }
+
+    function resetPaymentsMobile() {
+        resetPayments();
+        renderMobile();
+    }
+
     function resetPayments() {
         if (confirm('¿Limpiar todas las marcas?')) {
             payments.forEach(p => {
                 p.pagado = false;
                 localStorage.removeItem(`payment_${p.id}`);
             });
-            renderTable();
-            renderSummary();
         }
     }
 
@@ -511,15 +747,12 @@
         }
     }
 
-    // Inicializar al cargar la página
     window.onload = function() {
         const authenticated = localStorage.getItem('authenticated');
         
         if (authenticated === 'true') {
-            // Ya estaba autenticado, mostrar calendario
             showCalendar();
         } else {
-            // Inicializar Google Sign-In
             google.accounts.id.initialize({
                 client_id: CLIENT_ID,
                 callback: handleCredentialResponse
