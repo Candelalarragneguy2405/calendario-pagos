@@ -541,57 +541,58 @@
     const CLIENT_ID = '245604969675-k53tl31tugp76q72vj3k3ckio8qcn9ej.apps.googleusercontent.com';
 
     let payments = [
-        // SEPTIEMBRE 2026 - Solo Plan ARCA (el Plan Monotributo comienza en octubre)
+        // SEPTIEMBRE 2026 - Plan ARCA + Monotributo Corriente (el Monotributo Deuda comienza en octubre)
         { id: '1', mes: 'Septiembre', año: 2026, mes_num: '2026-09', concepto: 'Plan ARCA', tipo: 'arca', monto: 71695.65, vencimiento: 16, pagado: false },
-        // OCTUBRE 2026 - Comienza Plan ARCA + Plan Monotributo Deuda
-        { id: '2', mes: 'Octubre', año: 2026, mes_num: '2026-10', concepto: 'Plan ARCA', tipo: 'arca', monto: 71695.65, vencimiento: 16, pagado: false },
-        { id: '3', mes: 'Octubre', año: 2026, mes_num: '2026-10', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.57, vencimiento: 16, pagado: false },
-        { id: '4', mes: 'Octubre', año: 2026, mes_num: '2026-10', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
+        { id: '2', mes: 'Septiembre', año: 2026, mes_num: '2026-09', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
+        // OCTUBRE 2026 - Comienza Plan ARCA + Plan Monotributo Deuda + Corriente
+        { id: '3', mes: 'Octubre', año: 2026, mes_num: '2026-10', concepto: 'Plan ARCA', tipo: 'arca', monto: 71695.65, vencimiento: 16, pagado: false },
+        { id: '4', mes: 'Octubre', año: 2026, mes_num: '2026-10', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.57, vencimiento: 16, pagado: false },
+        { id: '5', mes: 'Octubre', año: 2026, mes_num: '2026-10', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
         // NOVIEMBRE 2026
-        { id: '5', mes: 'Noviembre', año: 2026, mes_num: '2026-11', concepto: 'Plan ARCA', tipo: 'arca', monto: 71695.65, vencimiento: 16, pagado: false },
-        { id: '6', mes: 'Noviembre', año: 2026, mes_num: '2026-11', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
-        { id: '7', mes: 'Noviembre', año: 2026, mes_num: '2026-11', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
+        { id: '6', mes: 'Noviembre', año: 2026, mes_num: '2026-11', concepto: 'Plan ARCA', tipo: 'arca', monto: 71695.65, vencimiento: 16, pagado: false },
+        { id: '7', mes: 'Noviembre', año: 2026, mes_num: '2026-11', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '8', mes: 'Noviembre', año: 2026, mes_num: '2026-11', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
         // DICIEMBRE 2026
-        { id: '8', mes: 'Diciembre', año: 2026, mes_num: '2026-12', concepto: 'Plan ARCA', tipo: 'arca', monto: 71695.65, vencimiento: 16, pagado: false },
-        { id: '9', mes: 'Diciembre', año: 2026, mes_num: '2026-12', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
-        { id: '10', mes: 'Diciembre', año: 2026, mes_num: '2026-12', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
+        { id: '9', mes: 'Diciembre', año: 2026, mes_num: '2026-12', concepto: 'Plan ARCA', tipo: 'arca', monto: 71695.65, vencimiento: 16, pagado: false },
+        { id: '10', mes: 'Diciembre', año: 2026, mes_num: '2026-12', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '11', mes: 'Diciembre', año: 2026, mes_num: '2026-12', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
         // ENERO 2027 - Último mes de Plan ARCA
-        { id: '11', mes: 'Enero', año: 2027, mes_num: '2027-01', concepto: 'Plan ARCA', tipo: 'arca', monto: 71695.65, vencimiento: 16, pagado: false },
-        { id: '12', mes: 'Enero', año: 2027, mes_num: '2027-01', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
-        { id: '13', mes: 'Enero', año: 2027, mes_num: '2027-01', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
+        { id: '12', mes: 'Enero', año: 2027, mes_num: '2027-01', concepto: 'Plan ARCA', tipo: 'arca', monto: 71695.65, vencimiento: 16, pagado: false },
+        { id: '13', mes: 'Enero', año: 2027, mes_num: '2027-01', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '14', mes: 'Enero', año: 2027, mes_num: '2027-01', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
         // FEBRERO 2027 - MAYO 2028 (Solo Plan Monotributo + Corriente)
-        { id: '14', mes: 'Febrero', año: 2027, mes_num: '2027-02', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
-        { id: '15', mes: 'Febrero', año: 2027, mes_num: '2027-02', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
-        { id: '16', mes: 'Marzo', año: 2027, mes_num: '2027-03', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
-        { id: '17', mes: 'Marzo', año: 2027, mes_num: '2027-03', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
-        { id: '18', mes: 'Abril', año: 2027, mes_num: '2027-04', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
-        { id: '19', mes: 'Abril', año: 2027, mes_num: '2027-04', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
-        { id: '20', mes: 'Mayo', año: 2027, mes_num: '2027-05', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
-        { id: '21', mes: 'Mayo', año: 2027, mes_num: '2027-05', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
-        { id: '22', mes: 'Junio', año: 2027, mes_num: '2027-06', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
-        { id: '23', mes: 'Junio', año: 2027, mes_num: '2027-06', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
-        { id: '24', mes: 'Julio', año: 2027, mes_num: '2027-07', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
-        { id: '25', mes: 'Julio', año: 2027, mes_num: '2027-07', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
-        { id: '26', mes: 'Agosto', año: 2027, mes_num: '2027-08', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
-        { id: '27', mes: 'Agosto', año: 2027, mes_num: '2027-08', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
-        { id: '28', mes: 'Septiembre', año: 2027, mes_num: '2027-09', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
-        { id: '29', mes: 'Septiembre', año: 2027, mes_num: '2027-09', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
-        { id: '30', mes: 'Octubre', año: 2027, mes_num: '2027-10', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
-        { id: '31', mes: 'Octubre', año: 2027, mes_num: '2027-10', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
-        { id: '32', mes: 'Noviembre', año: 2027, mes_num: '2027-11', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
-        { id: '33', mes: 'Noviembre', año: 2027, mes_num: '2027-11', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
-        { id: '34', mes: 'Diciembre', año: 2027, mes_num: '2027-12', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
-        { id: '35', mes: 'Diciembre', año: 2027, mes_num: '2027-12', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
-        { id: '36', mes: 'Enero', año: 2028, mes_num: '2028-01', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
-        { id: '37', mes: 'Enero', año: 2028, mes_num: '2028-01', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
-        { id: '38', mes: 'Febrero', año: 2028, mes_num: '2028-02', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
-        { id: '39', mes: 'Febrero', año: 2028, mes_num: '2028-02', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
-        { id: '40', mes: 'Marzo', año: 2028, mes_num: '2028-03', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
-        { id: '41', mes: 'Marzo', año: 2028, mes_num: '2028-03', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
-        { id: '42', mes: 'Abril', año: 2028, mes_num: '2028-04', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
-        { id: '43', mes: 'Abril', año: 2028, mes_num: '2028-04', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
-        { id: '44', mes: 'Mayo', año: 2028, mes_num: '2028-05', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
-        { id: '45', mes: 'Mayo', año: 2028, mes_num: '2028-05', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
+        { id: '15', mes: 'Febrero', año: 2027, mes_num: '2027-02', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '16', mes: 'Febrero', año: 2027, mes_num: '2027-02', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
+        { id: '17', mes: 'Marzo', año: 2027, mes_num: '2027-03', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '18', mes: 'Marzo', año: 2027, mes_num: '2027-03', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
+        { id: '19', mes: 'Abril', año: 2027, mes_num: '2027-04', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '20', mes: 'Abril', año: 2027, mes_num: '2027-04', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
+        { id: '21', mes: 'Mayo', año: 2027, mes_num: '2027-05', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '22', mes: 'Mayo', año: 2027, mes_num: '2027-05', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
+        { id: '23', mes: 'Junio', año: 2027, mes_num: '2027-06', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '24', mes: 'Junio', año: 2027, mes_num: '2027-06', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
+        { id: '25', mes: 'Julio', año: 2027, mes_num: '2027-07', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '26', mes: 'Julio', año: 2027, mes_num: '2027-07', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
+        { id: '27', mes: 'Agosto', año: 2027, mes_num: '2027-08', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '28', mes: 'Agosto', año: 2027, mes_num: '2027-08', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
+        { id: '29', mes: 'Septiembre', año: 2027, mes_num: '2027-09', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '30', mes: 'Septiembre', año: 2027, mes_num: '2027-09', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
+        { id: '31', mes: 'Octubre', año: 2027, mes_num: '2027-10', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '32', mes: 'Octubre', año: 2027, mes_num: '2027-10', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
+        { id: '33', mes: 'Noviembre', año: 2027, mes_num: '2027-11', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '34', mes: 'Noviembre', año: 2027, mes_num: '2027-11', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
+        { id: '35', mes: 'Diciembre', año: 2027, mes_num: '2027-12', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '36', mes: 'Diciembre', año: 2027, mes_num: '2027-12', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
+        { id: '37', mes: 'Enero', año: 2028, mes_num: '2028-01', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '38', mes: 'Enero', año: 2028, mes_num: '2028-01', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
+        { id: '39', mes: 'Febrero', año: 2028, mes_num: '2028-02', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '40', mes: 'Febrero', año: 2028, mes_num: '2028-02', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
+        { id: '41', mes: 'Marzo', año: 2028, mes_num: '2028-03', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '42', mes: 'Marzo', año: 2028, mes_num: '2028-03', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
+        { id: '43', mes: 'Abril', año: 2028, mes_num: '2028-04', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '44', mes: 'Abril', año: 2028, mes_num: '2028-04', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
+        { id: '45', mes: 'Mayo', año: 2028, mes_num: '2028-05', concepto: 'Plan Monotributo', tipo: 'monotributo', monto: 122568.58, vencimiento: 16, pagado: false },
+        { id: '46', mes: 'Mayo', año: 2028, mes_num: '2028-05', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
     ];
 
     function handleCredentialResponse(response) {
@@ -623,17 +624,32 @@
         tbody.innerHTML = '';
         
         let currentMonth = '';
+        let monthPayments = [];
         
-        payments.forEach(payment => {
-            if (currentMonth !== payment.mes_num) {
+        payments.forEach((payment, index) => {
+            // Cuando cambia el mes, mostrar el encabezado y total del mes anterior
+            if (currentMonth !== payment.mes_num && currentMonth !== '') {
+                // Agregar encabezado del mes anterior
                 const monthRow = document.createElement('tr');
                 monthRow.style.background = '#f0f0f0';
                 monthRow.style.fontWeight = 'bold';
-                monthRow.innerHTML = `<td colspan="5" style="padding: 12px; border-bottom: 2px solid #ccc;">${payment.mes} ${payment.año}</td>`;
+                const totalMes = monthPayments.reduce((sum, p) => sum + p.monto, 0);
+                monthRow.innerHTML = `<td colspan="4" style="padding: 12px; border-bottom: 2px solid #ccc; text-align: right;">Total ${monthPayments[0].mes}:</td><td style="text-align: right; font-weight: 700; padding: 12px; border-bottom: 2px solid #ccc;">$${totalMes.toLocaleString('es-AR', {minimumFractionDigits: 2})}</td>`;
                 tbody.appendChild(monthRow);
+                monthPayments = [];
+            }
+            
+            // Agregar encabezado de nuevo mes si es diferente
+            if (currentMonth !== payment.mes_num) {
+                const newMonthRow = document.createElement('tr');
+                newMonthRow.style.background = '#f9f9f9';
+                newMonthRow.style.fontWeight = 'bold';
+                newMonthRow.innerHTML = `<td colspan="5" style="padding: 12px; border-bottom: 1px solid #ddd;">${payment.mes} ${payment.año}</td>`;
+                tbody.appendChild(newMonthRow);
                 currentMonth = payment.mes_num;
             }
             
+            // Agregar pago individual
             const row = document.createElement('tr');
             row.className = `tipo-${payment.tipo}`;
             
@@ -650,6 +666,17 @@
             `;
             
             tbody.appendChild(row);
+            monthPayments.push(payment);
+            
+            // Si es el último pago, agregar el total del último mes
+            if (index === payments.length - 1) {
+                const monthRow = document.createElement('tr');
+                monthRow.style.background = '#f0f0f0';
+                monthRow.style.fontWeight = 'bold';
+                const totalMes = monthPayments.reduce((sum, p) => sum + p.monto, 0);
+                monthRow.innerHTML = `<td colspan="4" style="padding: 12px; border-bottom: 2px solid #ccc; text-align: right;">Total ${monthPayments[0].mes}:</td><td style="text-align: right; font-weight: 700; padding: 12px; border-bottom: 2px solid #ccc;">$${totalMes.toLocaleString('es-AR', {minimumFractionDigits: 2})}</td>`;
+                tbody.appendChild(monthRow);
+            }
         });
         
         renderSummary();
@@ -660,8 +687,20 @@
         container.innerHTML = '';
         
         let currentMonth = '';
+        let monthPayments = [];
         
-        payments.forEach(payment => {
+        payments.forEach((payment, index) => {
+            // Cuando cambia el mes, mostrar total del mes anterior
+            if (currentMonth !== payment.mes_num && currentMonth !== '') {
+                const totalMes = monthPayments.reduce((sum, p) => sum + p.monto, 0);
+                const totalDiv = document.createElement('div');
+                totalDiv.style.cssText = 'padding: 12px; background: #f0f0f0; font-weight: bold; color: var(--primary-dark); margin-bottom: 16px; border-radius: 6px; text-align: right;';
+                totalDiv.innerHTML = `Total ${monthPayments[0].mes}: <span style="font-size: 16px;">$${totalMes.toLocaleString('es-AR', {minimumFractionDigits: 2})}</span>`;
+                container.appendChild(totalDiv);
+                monthPayments = [];
+            }
+            
+            // Agregar encabezado de nuevo mes si es diferente
             if (currentMonth !== payment.mes_num) {
                 const monthHeader = document.createElement('div');
                 monthHeader.style.cssText = 'padding: 12px 0; font-weight: bold; color: var(--primary-dark); margin-top: 12px; border-bottom: 2px solid var(--border-color);';
@@ -691,6 +730,16 @@
             `;
             
             container.appendChild(card);
+            monthPayments.push(payment);
+            
+            // Si es el último pago, agregar el total del último mes
+            if (index === payments.length - 1) {
+                const totalMes = monthPayments.reduce((sum, p) => sum + p.monto, 0);
+                const totalDiv = document.createElement('div');
+                totalDiv.style.cssText = 'padding: 12px; background: #f0f0f0; font-weight: bold; color: var(--primary-dark); margin-top: 16px; border-radius: 6px; text-align: right;';
+                totalDiv.innerHTML = `Total ${monthPayments[0].mes}: <span style="font-size: 16px;">$${totalMes.toLocaleString('es-AR', {minimumFractionDigits: 2})}</span>`;
+                container.appendChild(totalDiv);
+            }
         });
         
         renderSummary();
