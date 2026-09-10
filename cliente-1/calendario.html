@@ -30,7 +30,6 @@
             padding: 20px;
         }
 
-        /* LOGIN */
         .login-screen {
             display: flex;
             align-items: center;
@@ -81,7 +80,11 @@
             font-size: 14px;
         }
 
-        /* MAIN */
+        #g_id_signin {
+            display: flex !important;
+            justify-content: center;
+        }
+
         .main-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -292,14 +295,6 @@
             .logout-btn {
                 margin-left: 0;
             }
-
-            table {
-                font-size: 12px;
-            }
-
-            th, td {
-                padding: 8px;
-            }
         }
     </style>
 </head>
@@ -387,27 +382,30 @@
         { id: '9', mes: 'Diciembre', año: 2026, mes_num: '2026-12', concepto: 'Monotributo Corriente', tipo: 'corriente', monto: 333802.94, vencimiento: 20, pagado: false },
     ];
 
+    // MANEJO DE AUTENTICACIÓN
     function handleCredentialResponse(response) {
-        const payload = JSON.parse(atob(response.credential.split('.')[1]));
-        console.log('Logged in as:', payload.email);
+        console.log('Autenticación exitosa');
         
-        // Guardar sesión
-        localStorage.setItem('user', payload.email);
+        // Guardar que el usuario está autenticado
+        localStorage.setItem('authenticated', 'true');
         
         // Mostrar calendario
-        setTimeout(() => {
-            document.getElementById('loginScreen').classList.add('hidden');
-            document.getElementById('mainContainer').classList.remove('hidden');
-            loadPayments();
-        }, 500);
+        showCalendar();
+    }
+
+    function showCalendar() {
+        document.getElementById('loginScreen').classList.add('hidden');
+        document.getElementById('mainContainer').classList.remove('hidden');
+        loadPayments();
     }
 
     function loadPayments() {
-        // Cargar pagos guardados
+        // Cargar pagos guardados desde localStorage
         payments.forEach(p => {
             const saved = localStorage.getItem(`payment_${p.id}`);
             if (saved) {
-                p.pagado = JSON.parse(saved).pagado;
+                const data = JSON.parse(saved);
+                p.pagado = data.pagado;
             }
         });
         renderTable();
@@ -513,21 +511,27 @@
         }
     }
 
-    // Verifica si hay sesión guardada
+    // Inicializar al cargar la página
     window.onload = function() {
-        const user = localStorage.getItem('user');
-        if (user) {
-            document.getElementById('loginScreen').classList.add('hidden');
-            document.getElementById('mainContainer').classList.remove('hidden');
-            loadPayments();
+        const authenticated = localStorage.getItem('authenticated');
+        
+        if (authenticated === 'true') {
+            // Ya estaba autenticado, mostrar calendario
+            showCalendar();
         } else {
+            // Inicializar Google Sign-In
             google.accounts.id.initialize({
                 client_id: CLIENT_ID,
                 callback: handleCredentialResponse
             });
+            
             google.accounts.id.renderButton(
                 document.getElementById('g_id_signin'),
-                { theme: 'outline', size: 'large' }
+                { 
+                    theme: 'outline', 
+                    size: 'large',
+                    locale: 'es'
+                }
             );
         }
     };
